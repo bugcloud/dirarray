@@ -9,7 +9,7 @@ module Dirarray
       a = []
       dir = Dir.new(@path)
       dir.each {|e|
-        next if (e == '..' || e == '.')
+        next if (e == '..' || e == '.' || e.to_s[0] == '.')
         f = File.new(@path + e)
         next if 'file' != File.ftype(f)
         s = open(f).read.chomp!

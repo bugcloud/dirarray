@@ -46,6 +46,21 @@ module Dirarray
           }
         end
       end
+      context "the directory has only files includes .xxx" do
+        it "should return ignore the file that its name start with '.'" do
+          expects = [
+            {:name => 'a', :body => 'aあ'},
+            {:name => 'b', :body => ''}
+          ]
+          dh = Dirarray.new('./features/case04/')
+          result = dh.array
+          result.size.should == expects.size
+          expects.each {|e|
+            result.index(e).should_not == nil
+          }
+        end
+      end
+
     end
   end
 end
