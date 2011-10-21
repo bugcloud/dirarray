@@ -60,7 +60,20 @@ module Dirarray
           }
         end
       end
-
+      context "sort files." do
+        it "should sort by file name asc" do
+          expects = [
+            {:name => '0', :body => ''},
+            {:name => '01', :body => ''},
+            {:name => '1', :body => ''},
+            {:name => 'a', :body => ''},
+            {:name => 'b', :body => ''}
+          ]
+          dh = Dirarray.new('./features/case05/')
+          result = dh.array
+          result.should == expects
+        end
+      end
     end
   end
 end

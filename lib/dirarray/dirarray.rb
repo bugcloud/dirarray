@@ -8,9 +8,14 @@ module Dirarray
     def array
       a = []
       dir = Dir.new(@path)
+      files = []
       dir.each {|e|
         next if (e == '..' || e == '.' || e.to_s[0] == '.')
-        f = File.new(@path + e)
+        files << e
+      }
+      files.sort!
+      files.each {|file|
+        f = File.new(@path + file)
         next if 'file' != File.ftype(f)
         s = open(f).read.chomp!
         a << {
